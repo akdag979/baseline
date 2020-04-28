@@ -150,13 +150,7 @@ async function initialize() {
   // Retrieve messenger instance and pass to helper classes
   // Modularized here to enable use of other messenger services in the future
   logger.info('Initializing server...');
-  messenger = await getClient();
-
-  if (messagingType === 'whisper') {
-    await messenger.loadIdentities();
-    await messenger.createFirstIdentity();
-  }
-
+  messenger = await getClient(messagingType);
   const connected = await messenger.isConnected();
   return connected;
 }

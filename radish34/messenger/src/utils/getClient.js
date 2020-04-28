@@ -2,20 +2,22 @@ const WhisperWrapper = require('../clients/whisper/WhisperWrapper');
 const web3utils = require('../clients/whisper/web3Utils.js');
 const NatsWrapper = require('../clients/nats/NatsWrapper');
 const Config = require('../../config');
+const { messagingType } = Config;
 
-async function getClient() {
+async function getClient(messagingType) {
   let messenger;
-  switch (Config.messagingType) {
+  switch (messagingType) {
     case 'whisper':
       messenger = await new WhisperWrapper();
+      await messenger.loadIdentities();
+      await messenger.createFirstIdentity();
       await web3utils.getWeb3();
       break;
     case 'nats':
       messenger = await new NatsWrapper(Config.nats, () => { });
       break;
     default:
-      messenger = await new WhisperWrapper();
-      await web3utils.getWeb3();
+      throw('messaging type configuration required');
   }
   return messenger;
 }

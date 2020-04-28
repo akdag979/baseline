@@ -31,19 +31,19 @@ module.exports = {
     users: [
       {
         ipAddress: 'nats-buyer',
-        messengerPort: '4221',
+        messengerPort: '4222',
         dbUrl: 'mongodb://mongo-buyer:27017/radish34_test',
         servers: [],
       },
       {
         ipAddress: 'nats-supplier1',
-        messengerPort: '4221',
+        messengerPort: '4222',
         dbUrl: 'mongodb://mongo-supplier1:27017/radish34_test',
         servers: [],
       },
       {
         ipAddress: 'nats-supplier2',
-        messengerPort: '4221',
+        messengerPort: '4222',
         dbUrl: 'mongodb://mongo-supplier2:27017/radish34_test',
         servers: [],
       },
